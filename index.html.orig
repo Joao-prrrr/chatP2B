@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contactPopUp.css">
+<<<<<<< HEAD
     <title>Chat P2B</title>
 </head>
 <body>
@@ -21,6 +21,14 @@
         <div id="ZoneContact">
             <img id="User" src="img/bingabongbi.png" alt="">
         </div>
+    </main>
+    <script src="js/script.js"></script>
+=======
+    <link rel="stylesheet" href="css/contactPopUp.css">
+    <title>Chat P2B</title>
+</head>
+<body>
+    <main>
         <!-- Zone Liste de contacts -->
         <!-- Zone Message -->
         <section id="messageZone">
@@ -38,6 +46,7 @@
             </form>
         </section>
     </main>
-    <script src="js/script.js"></script>
+
+>>>>>>> 5edc6400bb27ac8417967975aa6ba0d42751cd8c
 </body>
 </html>
