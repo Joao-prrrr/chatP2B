@@ -1,0 +1,48 @@
+#messageZone {
+    width: 60%;
+    height: 80%;
+    margin: auto;
+
+    background-color: #bcbcbc;
+    box-shadow: gray 0px 0px 5px 2px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#messageZone h1 {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+#messageZone ul {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contact {
+    width: 60%;
+    align-self: flex-start;
+}
+
+.me {
+    width: 60%;
+    align-self: flex-end;
+}
+
+#inputZone {
+    width: 100%;
+    height: 10%;
+    display: flex;
+
+    justify-content: center;
+    
+}
+
+#message {
+    width: 90%;
+}

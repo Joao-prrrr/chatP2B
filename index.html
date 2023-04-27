@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contactPopUp.css">
     <title>Chat P2B</title>
 </head>
 <body>
@@ -20,12 +22,13 @@
 
             <h1 id="contactName">Person name</h1>
             <ul id="messageField">
-                <li>Hello, Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reiciendis laboriosam eum magnam quae, sapiente fugit suscipit dolor, aut porro impedit temporibus facere, necessitatibus quibusdam minima possimus distinctio laudantium qui?</li>
+                <li class="contact">Hello, Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reiciendis laboriosam eum magnam quae, sapiente fugit suscipit dolor, aut porro impedit temporibus facere, necessitatibus quibusdam minima possimus distinctio laudantium qui?</li>
 
-                <li>Hello, Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reiciendis laboriosam eum magnam quae, sapiente fugit suscipit dolor, aut porro impedit temporibus facere, necessitatibus quibusdam minima possimus distinctio laudantium qui?</li>
+                <li class="me">Hello, Lorem ipsum dolor sit amet consectetur adipisicing elit. Non reiciendis laboriosam eum magnam quae, sapiente fugit suscipit dolor, aut porro impedit temporibus facere, necessitatibus quibusdam minima possimus distinctio laudantium qui?</li>
             </ul>
-            <form action="">
+            <form id="inputZone" action="" method="post">
                 <input type="text" value="Type a message" name="message" id="message">
+                
                 <input type="button" value="Send" name="send" id="sendBtn">
             </form>
         </section>
