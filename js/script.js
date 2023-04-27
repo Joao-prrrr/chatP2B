@@ -1,3 +1,6 @@
+
+import { conversation } from "../modules/MessageManager.js";
+
 let user = null;
 let contactZone = document.querySelector("#ZoneContact");
 function init() {
@@ -71,3 +74,21 @@ document.addEventListener("keydown", (e) =>{
 
 
 init();
+
+// Show conversations
+
+const contactName = document.querySelector("#contactName")
+const messageField = document.querySelector("#messageField")
+
+
+contactName.innerHTML = conversation.to
+
+    conversation.messages.forEach(message => {
+        if(message.author === conversation.to){
+            messageField += `<li class="contact">${message.message}</li>`
+        }
+        else {
+            messageField += `<li class="me">${message.message}</li>`
+        }
+    })
+});
