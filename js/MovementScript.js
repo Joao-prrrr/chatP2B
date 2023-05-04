@@ -1,19 +1,47 @@
 // Script for the SPA
 // Author : Lucas Soares
 // Date : 4.5.2023 v1
+import {User, User as UserManager} from "../modules/User.js";
+
+
 
 let user = null;
 let contactZone = document.querySelector("#ZoneContact");
-const allContacts = document.querySelectorAll(".Contacts");
+
 const messageZone = document.querySelector("#messageZone")
 const leaveButton = document.querySelector("#leave")
 const url = window.location.href;
+const allUsers = [];
+
+
+const reponse = await fetch("https://edu.pellaux.net/m294/chat-p2b/users.php")
+const users = (await reponse.json()).data;
+
+for (let i = 0; i < users.length; i++) {
+   allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
+   createUser( users[i]["pos_x"], users[i]["pos_y"], users[i]["username"] )
+
+   
+}
+
+function createUser(posX, posY, username){
+    let user = document.createElement("img")
+    user.className = "Contacts"
+    user.src = "img/aonfsioa.png"
+    user.style.left = `${posX}px`
+    user.style.top = `${posY}px`
+    user.id = username;
+    contactZone.appendChild(user)
+
+}
+
+const allContacts = document.querySelectorAll(".Contacts");
 
 function init() {
     user = document.getElementById("User");
     user.style.position = "relative";
-    user.style.left = "0px";
-    user.style.top = "0px";
+    user.style.left = "150px";
+    user.style.top = "150px";
 }
 function getKeyAndMove(e) {
     let key_code = e.which || e.keyCode;
@@ -128,6 +156,14 @@ leaveButton.addEventListener("click", (e) =>{
     contactZone.style.display = "flex";
     history.pushState({}, null, url);
 })
+
+
+
+
+
+
+
+
 
 init();
 

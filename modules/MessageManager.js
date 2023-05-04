@@ -25,18 +25,20 @@ class Message {
         return this.#message;
     }
 
-    static getMessages(userId) {
-        return [
-            new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
-            new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
-            new Message("Joao", "Lucas", "Salut, cv?3", "4-5-23"),
-            new Message("Jorge", "Lucas", "Salut, cv?4", "4-5-23"),
-            new Message("Jorge", "Lucas", "Salut, cv?5", "4-5-23"),
-            new Message("Joao", "Lucas", "Salut, cv?6", "4-5-23"),
-            new Message("Lucas", "Miguel", "Salut, cv?7", "4-5-23"),
-            new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
-            new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
-        ];
+    static async getMessages(userId) {
+        // return [
+        //     new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
+        //     new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
+        //     new Message("Joao", "Lucas", "Salut, cv?3", "4-5-23"),
+        //     new Message("Jorge", "Lucas", "Salut, cv?4", "4-5-23"),
+        //     new Message("Jorge", "Lucas", "Salut, cv?5", "4-5-23"),
+        //     new Message("Joao", "Lucas", "Salut, cv?6", "4-5-23"),
+        //     new Message("Lucas", "Miguel", "Salut, cv?7", "4-5-23"),
+        //     new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
+        //     new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
+        // ];
+
+
     }
 }
 

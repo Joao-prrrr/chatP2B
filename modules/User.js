@@ -11,6 +11,7 @@ class User {
         this.#pos_x = posX
         this.#pos_y = posY
     }
+    
 }
 
 export {User}
