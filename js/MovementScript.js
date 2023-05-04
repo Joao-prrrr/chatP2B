@@ -2,6 +2,7 @@
 // Author : Lucas Soares
 // Date : 4.5.2023 v1
 import {User, User as UserManager} from "../modules/User.js";
+import { printDiscution } from "./ConversationScript.js";
 
 
 
@@ -142,6 +143,7 @@ function checkOverlap(){
             user.style.left = "0px";
             user.style.top = "0px";
             
+            printDiscution(x)
             // history.pushState({}, null, `${url}/Joao`);
 
         }
