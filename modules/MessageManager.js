@@ -37,6 +37,7 @@ class Message {
             new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
             new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
         ];
+        
     }
 }
 
