@@ -114,7 +114,7 @@ function checkOverlap(){
             user.style.left = "0px";
             user.style.top = "0px";
             
-            history.pushState({}, null, `${url}/salut`);
+            // history.pushState({}, null, `${url}/Joao`);
 
         }
         
