@@ -1,5 +1,5 @@
 
-import { conversation } from "../modules/MessageManager.js";
+import {Message} from "../modules/messageManager.js";
 
 let user = null;
 let contactZone = document.querySelector("#ZoneContact");
@@ -77,18 +77,34 @@ init();
 
 // Show conversations
 
+const listMessages = [
+    new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
+    new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
+    new Message("Joao", "Lucas", "Salut, cv?3", "4-5-23"),
+    new Message("Jorge", "Lucas", "Salut, cv?4", "4-5-23"),
+    new Message("Jorge", "Lucas", "Salut, cv?5", "4-5-23"),
+    new Message("Joao", "Lucas", "Salut, cv?6", "4-5-23"),
+    new Message("Lucas", "Miguel", "Salut, cv?7", "4-5-23"),
+    new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
+    new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
+]
+
 const contactName = document.querySelector("#contactName")
 const messageField = document.querySelector("#messageField")
 
 
-contactName.innerHTML = conversation.to
+const userName = "Jorge";
+const receiverName = "Lucas"
+// const receiverName = window.location.pathname
 
-    conversation.messages.forEach(message => {
-        if(message.author === conversation.to){
-            messageField += `<li class="contact">${message.message}</li>`
-        }
-        else {
-            messageField += `<li class="me">${message.message}</li>`
-        }
+contactName.innerHTML = receiverName
+
+listMessages.forEach(message => {
+    console.log(message)
+    if(message.sender === userName && message.receiver === receiverName){
+        messageField.innerHTML += `<li class="me">${message.message}</li>`
+    }
+    else if(message.sender === receiverName && message.receiver === userName) {
+        messageField.innerHTML += `<li class="contact">${message.message}</li>`
+    }
     })
-});
