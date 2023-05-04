@@ -25,7 +25,7 @@ class Message {
         return this.#message;
     }
 
-    static getMessages() {
+    static getMessages(userId) {
         return [
             new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
             new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
