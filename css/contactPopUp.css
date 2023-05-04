@@ -1,12 +1,11 @@
 #messageZone {
+    display: none;
     width: 60%;
     height: 80%;
     margin: auto;
 
     background-color: #bcbcbc;
     box-shadow: gray 0px 0px 5px 2px;
-
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -38,9 +37,12 @@
     width: 100%;
     height: 10%;
     display: flex;
-
     justify-content: center;
     
+}
+
+#leave{
+    width: 5%;
 }
 
 #message {
