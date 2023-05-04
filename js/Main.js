@@ -7,7 +7,7 @@ import {Message as MessageManager} from "../modules/messageManager.js";
 
 // Show conversations
 
-const listMessages = MessageManager.getMessages()
+const listMessages = MessageManager.getMessages("")
 
 const contactName = document.querySelector("#contactName")
 const messageField = document.querySelector("#messageField")
