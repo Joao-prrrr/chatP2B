@@ -5,6 +5,8 @@
 // Message class
 import {Message as MessageManager} from "../modules/messageManager.js";
 
+
+
 // Show conversations
 
 const listMessages = MessageManager.getMessages("")
@@ -33,3 +35,7 @@ window.addEventListener("locationchange", () => {
         })
 
 })
+
+
+
+//MessageManager.getMessages("ss");
