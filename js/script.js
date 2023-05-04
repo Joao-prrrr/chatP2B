@@ -1,5 +1,9 @@
+// Script for the SPA
+// Author : Joao Araribá & Lucas Soares
+// Date : 4.5.2023 v1
 
-import {Message} from "../modules/messageManager.js";
+// Message class
+import {Message as MessageManager} from "../modules/messageManager.js";
 
 let user = null;
 let contactZone = document.querySelector("#ZoneContact");
@@ -77,34 +81,25 @@ init();
 
 // Show conversations
 
-const listMessages = [
-    new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
-    new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
-    new Message("Joao", "Lucas", "Salut, cv?3", "4-5-23"),
-    new Message("Jorge", "Lucas", "Salut, cv?4", "4-5-23"),
-    new Message("Jorge", "Lucas", "Salut, cv?5", "4-5-23"),
-    new Message("Joao", "Lucas", "Salut, cv?6", "4-5-23"),
-    new Message("Lucas", "Miguel", "Salut, cv?7", "4-5-23"),
-    new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
-    new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
-]
+const listMessages = MessageManager.getMessages()
 
 const contactName = document.querySelector("#contactName")
 const messageField = document.querySelector("#messageField")
 
 
-const userName = "Jorge";
-const receiverName = "Lucas"
-// const receiverName = window.location.pathname
+const userName = "Lucas";
+// const receiverName = "Lucas"
+const path = window.location.path + "/MIguel" 
+const receiverName = path.slice(path.indexOf("/", 2)+1)
 
 contactName.innerHTML = receiverName
 
 listMessages.forEach(message => {
-    console.log(message)
-    if(message.sender === userName && message.receiver === receiverName){
+    // console.log(message)
+    if(message.sender.toLowerCase() === userName.toLowerCase() && message.receiver.toLowerCase() === receiverName.toLowerCase()){
         messageField.innerHTML += `<li class="me">${message.message}</li>`
     }
-    else if(message.sender === receiverName && message.receiver === userName) {
+    else if(message.sender.toLowerCase() === receiverName.toLowerCase() && message.receiver.toLowerCase() === userName.toLowerCase()) {
         messageField.innerHTML += `<li class="contact">${message.message}</li>`
     }
     })
