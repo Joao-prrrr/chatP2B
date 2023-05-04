@@ -1,3 +1,7 @@
+// Script for the SPA
+// Author : Lucas Soares
+// Date : 4.5.2023 v1
+
 let user = null;
 let contactZone = document.querySelector("#ZoneContact");
 const allContacts = document.querySelectorAll(".Contacts");
@@ -126,3 +130,4 @@ leaveButton.addEventListener("click", (e) =>{
 })
 
 init();
+
