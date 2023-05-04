@@ -1,0 +1,51 @@
+body *{
+    margin:0;
+    padding: 0;
+
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/greenBackground.jpg");
+    background-size: cover;
+}
+main{
+    display: flex;
+
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+#sectionLogin{
+    align-self: center;
+    width: 20%;
+    height: 40%;
+    background-color: rgb(67, 180, 174);
+    border-radius: 12px;
+    box-shadow: 20px 10px 5px rgb(83, 73, 73);
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+form {
+    height: 100%;
+}
+fieldset{
+    height: 100%;
+    border: none;
+}
+label, input, button{
+    width: 30%;
+    align-self: center;
+
+}
+label{
+    margin-top: 10%;
+}
+input{
+    margin-bottom: 24%;
+}
