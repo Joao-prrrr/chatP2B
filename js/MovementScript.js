@@ -145,7 +145,6 @@ function checkOverlap(){
             
             printDiscution(x)
             // history.pushState({}, null, `${url}/Joao`);
-
         }
         
     })
