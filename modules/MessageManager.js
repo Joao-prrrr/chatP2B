@@ -1,44 +1,36 @@
 
-class Message {
-    #id
-    #sender
-    #receiver
-    #message
-    #date
+class Manager {
+
     
-    constructor(sender, receiver, message, date) {
-        this.#sender = sender
-        this.#receiver = receiver
-        this.#message = message
-        this.#date = date
-    }
+    static options = {
+        method: "GET",
+        headers: null,
+        // mode: "cors",
+        // cache: "default"
+    };
 
-    get sender() {
-        return this.#sender;
-    }
+    static async getMessages(userToken, contact) {
+        return new Promise((resolve, reject) => {
 
-    get receiver() {
-        return this.#receiver;
-    }
-    
-    get message() {
-        return this.#message;
-    }
+            userToken = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d"
+            
+            Manager.options.headers = new Headers({'Authorization': `Bearer ${userToken}`})
+            // console.log(this.options)
+            const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contact}`, this.options)
 
-    static async getMessages(userId) {
-        // return [
-        //     new Message("Joao", "Lucas", "Salut, cv?", "4-5-23"),
-        //     new Message("Miguel", "Lucas", "Salut, cv?2", "4-5-23"),
-        //     new Message("Joao", "Lucas", "Salut, cv?3", "4-5-23"),
-        //     new Message("Jorge", "Lucas", "Salut, cv?4", "4-5-23"),
-        //     new Message("Jorge", "Lucas", "Salut, cv?5", "4-5-23"),
-        //     new Message("Joao", "Lucas", "Salut, cv?6", "4-5-23"),
-        //     new Message("Lucas", "Miguel", "Salut, cv?7", "4-5-23"),
-        //     new Message("Lucas", "Joao", "Salut, cv?8", "4-5-23"),
-        //     new Message("Joao", "Louis", "Salut, cv?9", "4-5-23"),
-        // ];
+            promise.then(response => {
+                console.log(response)
+                if(response.ok) {
+                    return response.json();
+                }else {
+                    reject(response.status);
+                }
+            })
+            .then(json => {   
+                resolve(json);
+            })
 
-
+        })
     }
 }
 
@@ -47,4 +39,4 @@ class Message {
 //     {message: "Bien et toi?", author: "Lucas"}
 // ]}
 
-export {Message};
+export {Manager};
