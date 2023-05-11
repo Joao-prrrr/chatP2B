@@ -180,7 +180,7 @@ function checkOverlap() {
             canMove = false;
             console.log(currentUser)
 
-            printDiscution(x, currentUser.token)
+            printDiscution(x, currentUser)
             // history.pushState({}, null, `${url}/Joao`);
         }
 
