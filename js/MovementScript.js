@@ -1,21 +1,26 @@
 // Script for the SPA
 // Author : Lucas Soares
 // Date : 4.5.2023 v1
-import {User, User as UserManager} from "../modules/User.js";
+
+import User from "../modules/User.js"
 
 
-
-let user = null;
+let userIcon = null;
 let contactZone = document.querySelector("#ZoneContact");
 
 const messageZone = document.querySelector("#messageZone")
 const leaveButton = document.querySelector("#leave")
 const url = window.location.href;
 const allUsers = [];
+let currentUser;
+
+
+
 
 
 const reponse = await fetch("https://edu.pellaux.net/m294/chat-p2b/users.php")
 const users = (await reponse.json()).data;
+
 
 for (let i = 0; i < users.length; i++) {
    allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
@@ -32,16 +37,19 @@ function createUser(posX, posY, username){
     user.style.top = `${posY}px`
     user.id = username;
     contactZone.appendChild(user)
-
 }
 
 const allContacts = document.querySelectorAll(".Contacts");
 
 function init() {
-    user = document.getElementById("User");
-    user.style.position = "relative";
-    user.style.left = "150px";
-    user.style.top = "150px";
+    userIcon = document.getElementById("User");
+    userIcon.style.position = "relative";
+    userIcon.style.left = "150px";
+    userIcon.style.top = "150px";
+    const temp = JSON.parse(localStorage.getItem("user"))
+    currentUser = new User(temp.id, temp.username, temp.token, temp.pos_x, temp.pos_y)
+
+    console.log(currentUser)
 }
 function getKeyAndMove(e) {
     let key_code = e.which || e.keyCode;
@@ -64,9 +72,9 @@ function getKeyAndMove(e) {
  * Bouge a gauche si il ne depasse pas les bords
  */
 function moveLeft() {
-    const nextPos = parseInt(user.style.left) - 40;
+    const nextPos = parseInt(userIcon.style.left) - 40;
     if (nextPos >= 0) {
-        user.style.left = nextPos + "px";
+        userIcon.style.left = nextPos + "px";
 
     }
 
@@ -75,9 +83,9 @@ function moveLeft() {
  * Bouge en haut si il ne depasse pas les bords
  */
 function moveUp() {
-    const nextPos = parseInt(user.style.top) - 40;
+    const nextPos = parseInt(userIcon.style.top) - 40;
     if (nextPos >= 0) {
-        user.style.top = nextPos + "px";
+        userIcon.style.top = nextPos + "px";
 
     }
 
@@ -86,9 +94,9 @@ function moveUp() {
  * Bouge a droite si il ne depasse pas les bords
  */
 function moveRight() {
-    const nextPos = parseInt(user.style.left) + 40;
-    if (nextPos + user.clientWidth <= contactZone.clientWidth) {
-        user.style.left = nextPos + "px";
+    const nextPos = parseInt(userIcon.style.left) + 40;
+    if (nextPos + userIcon.clientWidth <= contactZone.clientWidth) {
+        userIcon.style.left = nextPos + "px";
 
     }
 
@@ -98,9 +106,9 @@ function moveRight() {
  * Bouge en bas si il ne depasse pas les bords
  */
 function moveDown() {
-    const nextPos = parseInt(user.style.top) + 40;
-    if (nextPos + user.clientHeight <= contactZone.clientHeight) {
-        user.style.top = nextPos + "px";
+    const nextPos = parseInt(userIcon.style.top) + 40;
+    if (nextPos + userIcon.clientHeight <= contactZone.clientHeight) {
+        userIcon.style.top = nextPos + "px";
 
     }
     
@@ -135,14 +143,12 @@ document.addEventListener("keydown", (e) =>{
  */
 function checkOverlap(){
     allContacts.forEach( function (x) {
-        if(elementsOverlap(user,x)){
-
+        if(elementsOverlap(userIcon,x)){
+            console.log(localStorage.getItem("user"))
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
-            user.style.left = "0px";
-            user.style.top = "0px";
-            
-            // history.pushState({}, null, `${url}/Joao`);
+            userIcon.style.left = "0px";
+            userIcon.style.top = "0px";
 
         }
         
@@ -154,15 +160,10 @@ function checkOverlap(){
 leaveButton.addEventListener("click", (e) =>{
     messageZone.style.display = "none";
     contactZone.style.display = "flex";
+    userIcon.style.left = "500px";
+    userIcon.style.top = "500px";
     history.pushState({}, null, url);
 })
-
-
-
-
-
-
-
 
 
 init();

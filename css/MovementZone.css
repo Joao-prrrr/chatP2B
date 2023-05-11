@@ -18,17 +18,22 @@ main {
     display: flex;
 }
 #ZoneContact{
-    width: 95%;
-    height: 90%;
-    margin: 2%;
+    width: 1024px;
+    height: 768px;
+
     background-color: rgb(219, 219, 219);
 }
 img{
     width: 50px;
     height: 50px;
+    position: absolute;
+}
+#user{
+    left: 300px;
+    top: 300px;
+
 }
 .Contacts{
-    position: relative;
-    left: 50%;
-    top: 50%;
+    position: absolute;
+    
 }
