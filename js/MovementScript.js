@@ -18,18 +18,13 @@ const allUsers = [];
 let currentUser;
 let canMove = true;
 
+let contacts;
 
 
 
 
-const reponse = await fetch("https://edu.pellaux.net/m294/chat-p2b/users.php")
-const users = (await reponse.json()).data;
 
 
-for (let i = 0; i < users.length; i++) {
-    allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
-    createUser(users[i]["pos_x"], users[i]["pos_y"], users[i]["username"]);
-}
 
 function createUser(posX, posY, username) {
     let user = document.createElement("img")
@@ -41,15 +36,43 @@ function createUser(posX, posY, username) {
     contactZone.appendChild(user)
 }
 
-const allContacts = document.querySelectorAll(".Contacts");
+
+
+
+async function drawUsers(){
+    contacts = document.querySelectorAll(".Contacts");
+    
+
+
+    const reponse = await fetch("https://edu.pellaux.net/m294/chat-p2b/users.php")
+    const users = (await reponse.json()).data;
+    
+
+    const temp = JSON.parse(localStorage.getItem("user"))
+    currentUser = new User(temp.id, temp.username, temp.token, temp.pos_x, temp.pos_y)
+
+    contacts.forEach(function(e){
+        e.remove();
+    })
+
+    for (let i = 0; i < users.length; i++) {
+        if (temp.username !== users[i]["username"]) {
+            allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
+            createUser(users[i]["pos_x"], users[i]["pos_y"], users[i]["username"]);
+        }
+
+    }
+}
 
 function init() {
+
+    drawUsers();
+
     userIcon = document.getElementById("User");
     userIcon.style.position = "relative";
     userIcon.style.left = "150px";
     userIcon.style.top = "150px";
-    const temp = JSON.parse(localStorage.getItem("user"))
-    currentUser = new User(temp.id, temp.username, temp.token, temp.pos_x, temp.pos_y)
+
 
 }
 function getKeyAndMove(e) {
@@ -73,7 +96,7 @@ function getKeyAndMove(e) {
  * Bouge a gauche si il ne depasse pas les bords
  */
 function moveLeft() {
-    const nextPos = parseInt(userIcon.style.left) - 40;
+    const nextPos = parseInt(userIcon.style.left) - 30;
     if (nextPos >= 0) {
         userIcon.style.left = nextPos + "px";
         sendPosition()
@@ -84,7 +107,7 @@ function moveLeft() {
  * Bouge en haut si il ne depasse pas les bords
  */
 function moveUp() {
-    const nextPos = parseInt(userIcon.style.top) - 40;
+    const nextPos = parseInt(userIcon.style.top) - 30;
     if (nextPos >= 0) {
         userIcon.style.top = nextPos + "px";
         sendPosition()
@@ -95,7 +118,7 @@ function moveUp() {
  * Bouge a droite si il ne depasse pas les bords
  */
 function moveRight() {
-    const nextPos = parseInt(userIcon.style.left) + 40;
+    const nextPos = parseInt(userIcon.style.left) + 30;
     if (nextPos + userIcon.clientWidth <= contactZone.clientWidth) {
         userIcon.style.left = nextPos + "px";
         sendPosition()
@@ -107,7 +130,7 @@ function moveRight() {
  * Bouge en bas si il ne depasse pas les bords
  */
 function moveDown() {
-    const nextPos = parseInt(userIcon.style.top) + 40;
+    const nextPos = parseInt(userIcon.style.top) + 30;
     if (nextPos + userIcon.clientHeight <= contactZone.clientHeight) {
         userIcon.style.top = nextPos + "px";
         sendPosition()
@@ -147,7 +170,7 @@ document.addEventListener("keydown", (e) => {
  * check sur tout les contacts pour voir si ils se touchent avec l'utilisateur
  */
 function checkOverlap() {
-    allContacts.forEach(function (x) {
+    contacts.forEach(function (x) {
         if (elementsOverlap(userIcon, x)) {
             console.log(localStorage.getItem("user"))
             messageZone.style.display = "flex";
@@ -164,7 +187,7 @@ function checkOverlap() {
 }
 
 async function sendPosition() {
-    const test = await fetch("https://edu.pellaux.net/m294/chat-p2b/move.php", {
+    await fetch("https://edu.pellaux.net/m294/chat-p2b/move.php", {
         method: "POST",
         
         body: JSON.stringify({
@@ -192,6 +215,9 @@ leaveButton.addEventListener("click", (e) => {
     history.pushState({}, null, url);
 })
 
+setInterval(() => {
+    drawUsers();
+}, 200);
 
 init();
 
