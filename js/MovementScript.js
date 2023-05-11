@@ -1,8 +1,11 @@
 // Script for the SPA
 // Author : Lucas Soares
 // Date : 4.5.2023 v1
-
 import User from "../modules/User.js"
+
+
+import { printDiscution } from "./ConversationScript.js";
+
 
 
 let userIcon = null;
@@ -49,7 +52,6 @@ function init() {
     const temp = JSON.parse(localStorage.getItem("user"))
     currentUser = new User(temp.id, temp.username, temp.token, temp.pos_x, temp.pos_y)
 
-    console.log(currentUser)
 }
 function getKeyAndMove(e) {
     let key_code = e.which || e.keyCode;
@@ -149,6 +151,11 @@ function checkOverlap(){
             contactZone.style.display = "none";
             userIcon.style.left = "0px";
             userIcon.style.top = "0px";
+
+            
+            printDiscution(x)
+            // history.pushState({}, null, `${url}/Joao`);
+
 
         }
         

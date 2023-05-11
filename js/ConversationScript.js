@@ -5,8 +5,6 @@
 // Message class
 import {Message as MessageManager} from "../modules/messageManager.js";
 
-
-
 // Show conversations
 
 const listMessages = MessageManager.getMessages("")
@@ -14,13 +12,10 @@ const listMessages = MessageManager.getMessages("")
 const contactName = document.querySelector("#contactName")
 const messageField = document.querySelector("#messageField")
 
-
-const userName = "Lucas";
-// const receiverName = "Lucas"
-
-window.addEventListener("locationchange", () => {
-    const path = window.location.path 
-    const receiverName = path.slice(path.indexOf("/", 2)+1)
+function printDiscution(userObj) {
+    
+    const userName = "Lucas";
+    const receiverName = userObj.id
     
     contactName.innerHTML = receiverName
     
@@ -33,9 +28,6 @@ window.addEventListener("locationchange", () => {
             messageField.innerHTML += `<li class="contact">${message.message}</li>`
         }
         })
+}
 
-})
-
-
-
-//MessageManager.getMessages("ss");
+export {printDiscution}
