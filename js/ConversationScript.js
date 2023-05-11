@@ -11,7 +11,7 @@ import {Message} from "../modules/Message.js";
 
 function printDiscution(contact, currentUser) {
 
-    token = currentUser.token;
+    let token = currentUser.token;
     let listMessages = null;
     Manager.getMessages(token, contact.id)
     .then((list) => {
