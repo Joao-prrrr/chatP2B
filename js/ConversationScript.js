@@ -9,19 +9,18 @@ import {Message} from "../modules/Message.js";
 // Show conversations
 
 
-function printDiscution(user, token) {
+function printDiscution(contact, currentUser) {
 
-    user.id = "312101c6-92a8-423b-b5cf-be2c060e24f4";
-    token = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d";
-    const listMessages = null;
-    Manager.getMessages(token, user.id)
+    token = currentUser.token;
+    let listMessages = null;
+    Manager.getMessages(token, contact.id)
     .then((list) => {
         listMessages = list
         const contactName = document.querySelector("#contactName")
         const messageField = document.querySelector("#messageField")
         
-        const userName = "Joao";
-        const receiverName = user.id
+        const userName = currentUser.username;
+        const receiverName = contact.username;
         
         contactName.innerHTML = receiverName
         

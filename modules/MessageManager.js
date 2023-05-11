@@ -5,8 +5,8 @@ class Manager {
     static options = {
         method: "GET",
         headers: null,
-        // mode: "no-cors",
-        //cache: "default"
+        // mode: "cors",
+        // cache: "default"
     };
 
     static async getMessages(userToken, contact) {
@@ -14,9 +14,9 @@ class Manager {
 
             userToken = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d"
             
-            Manager.options.headers = new Headers({Authentication: `Bearer ${userToken}`})
+            Manager.options.headers = new Headers({'Authorization': `Bearer ${userToken}`})
             // console.log(this.options)
-            const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contact}`, Manager.options)
+            const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contact}`, this.options)
 
             promise.then(response => {
                 console.log(response)

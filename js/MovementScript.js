@@ -15,7 +15,7 @@ const messageZone = document.querySelector("#messageZone")
 const leaveButton = document.querySelector("#leave")
 const url = window.location.href;
 const allUsers = [];
-let currentUser;
+let currentUser = null;
 let canMove = true;
 
 
@@ -155,8 +155,9 @@ function checkOverlap() {
             userIcon.style.left = "0px";
             userIcon.style.top = "0px";
             canMove = false;
-            console.log("salut")
-            printDiscution(x)
+            console.log(currentUser)
+
+            printDiscution(x, currentUser.token)
             // history.pushState({}, null, `${url}/Joao`);
         }
 
