@@ -12,7 +12,7 @@ class Manager {
     static async getMessages(userToken, contactId) {
         return new Promise((resolve, reject) => {
 
-            userToken = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d"
+            // userToken = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d"
             
             Manager.options.headers = new Headers({'Authorization': `Bearer ${userToken}`})
             // console.log(this.options)
