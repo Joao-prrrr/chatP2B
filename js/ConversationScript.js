@@ -31,7 +31,7 @@ function printDiscution(contact, currentUser) {
             if(message.sender === currentUser.id && message.receiver === contact.id){
                 messageField.innerHTML += `<li class="me">${message.message}</li>`
             }
-            else if(message.sender === contact.id && message.receiver === currentUser) {
+            else if(message.sender === contact.id && message.receiver === currentUser.id) {
                 messageField.innerHTML += `<li class="contact">${message.message}</li>`
             }
 
