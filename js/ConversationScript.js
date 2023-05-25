@@ -23,14 +23,15 @@ function printDiscution(contact, currentUser) {
         const receiverName = contact.name;
         
         contactName.innerHTML = receiverName
+        messageField.innerHTML = "";
 
         for(let index in listMessages.data){
             // console.log(message)
-            let message = listMessages.data[index];
+            let message = listMessages.data[index]; 
             if(message.sender === currentUser.id && message.receiver === contact.id){
                 messageField.innerHTML += `<li class="me">${message.message}</li>`
             }
-            else if(message.sender === contact.id && message.receiver === currentUser.toLowerCase()) {
+            else if(message.sender === contact.id && message.receiver === currentUser) {
                 messageField.innerHTML += `<li class="contact">${message.message}</li>`
             }
 
