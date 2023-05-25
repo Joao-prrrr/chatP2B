@@ -151,10 +151,10 @@ function elementsOverlap(el1, el2) {
     const domRect2 = el2.getBoundingClientRect();
 
     return !(
-        domRect1.top > domRect2.bottom ||
-        domRect1.right < domRect2.left ||
-        domRect1.bottom < domRect2.top ||
-        domRect1.left > domRect2.right
+        domRect1.top >= domRect2.bottom ||
+        domRect1.right <= domRect2.left ||
+        domRect1.bottom <= domRect2.top ||
+        domRect1.left >= domRect2.right
     );
 }
 /**
@@ -171,19 +171,20 @@ document.addEventListener("keydown", (e) => {
  * check sur tout les contacts pour voir si ils se touchent avec l'utilisateur
  */
 function checkOverlap() {
+
     contacts.forEach(function (x) {
-        if (elementsOverlap(userIcon, x)) {
-            console.log(localStorage.getItem("user"))
+        if (elementsOverlap(userIcon, x) && canMove) {
+            
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
             userIcon.style.left = "0px";
             userIcon.style.top = "0px";
             canMove = false;
-            console.log(currentUser)
-
             printDiscution(x, currentUser)
+
             // history.pushState({}, null, `${url}/Joao`);
         }
+        
 
     })
 }
