@@ -34,8 +34,19 @@ function printDiscution(contact, currentUser) {
             }
 
         }
-        // listMessages.forEach(message => {
-        //     })
+        
+        // Writing messages
+
+        const form = document.querySelector("#inputZone");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const data = new FormData(form)
+
+            let message = data.get("message")
+            Manager.sendMessage(contact, currentUser.token, message);
+
+        })
     })
     .catch(err => console.log(err))
     

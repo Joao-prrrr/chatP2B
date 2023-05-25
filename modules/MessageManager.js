@@ -2,10 +2,17 @@
 class Manager {
 
     
-    static options = {
+    static optionsGet = {
         method: "GET",
         headers: null,
         // mode: "cors",
+        // cache: "default"
+    };
+
+    static optionsPost = {
+        method: "POST",
+        headers: null,
+        body: null
         // cache: "default"
     };
 
@@ -14,9 +21,9 @@ class Manager {
 
             // userToken = "d5a2f3fa-a589-45ef-9132-2ecb23cbd93d"
             
-            Manager.options.headers = new Headers({'Authorization': `Bearer ${userToken}`})
-            // console.log(this.options)
-            const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contactId}`, this.options)
+            Manager.optionsGet.headers = new Headers({'Authorization': `Bearer ${userToken}`})
+            // console.log(this.optionsGet)
+            const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contactId}`, this.optionsGet)
 
             promise.then(response => {
                 console.log(response)
@@ -31,6 +38,16 @@ class Manager {
             })
 
         })
+    }
+
+    static async sendMessage(contact, userToken, message) {
+        Manager.optionsPost.headers = new Headers({'Authorization': `Bearer ${userToken}`})
+        Manager.optionsPost.body = {
+            "contact": contact.id,
+            "message": message
+        };
+        const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php`, this.optionsPost)
+
     }
 }
 
