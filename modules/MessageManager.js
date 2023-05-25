@@ -42,12 +42,19 @@ class Manager {
 
     static async sendMessage(contact, userToken, message) {
         Manager.optionsPost.headers = new Headers({'Authorization': `Bearer ${userToken}`})
-        Manager.optionsPost.body = {
-            "contact": contact.id,
-            "message": message
-        };
+        Manager.optionsPost.body = JSON.stringify({
+            contact: contact.id,
+            message: message
+        });
         const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php`, this.optionsPost)
-
+        promise.then((response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            else {
+                reject(response.status);
+            }
+        })
     }
 }
 

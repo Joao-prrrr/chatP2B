@@ -24,12 +24,13 @@ function printDiscution(contact, currentUser) {
         
         contactName.innerHTML = receiverName
 
-        for(let message in listMessages.data){
+        for(let index in listMessages.data){
             // console.log(message)
-            if(message.sender.toLowerCase() === userName.toLowerCase() && message.receiver.toLowerCase() === receiverName.toLowerCase()){
+            let message = listMessages.data[index];
+            if(message.sender === currentUser.id && message.receiver === contact.id){
                 messageField.innerHTML += `<li class="me">${message.message}</li>`
             }
-            else if(message.sender.toLowerCase() === receiverName.toLowerCase() && message.receiver.toLowerCase() === userName.toLowerCase()) {
+            else if(message.sender === contact.id && message.receiver === currentUser.toLowerCase()) {
                 messageField.innerHTML += `<li class="contact">${message.message}</li>`
             }
 
@@ -44,8 +45,8 @@ function printDiscution(contact, currentUser) {
             const data = new FormData(form)
 
             let message = data.get("message")
-            Manager.sendMessage(contact, currentUser.token, message);
-
+            let result = Manager.sendMessage(contact, token, message);
+            console.log(result)
         })
     })
     .catch(err => console.log(err))
