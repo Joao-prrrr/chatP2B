@@ -26,13 +26,14 @@ let contacts;
 
 
 
-function createUser(posX, posY, id) {
+function createUser(posX, posY, id, name) {
     let user = document.createElement("img")
     user.className = "Contacts"
     user.src = "img/aonfsioa.png"
     user.style.left = `${posX}px`
     user.style.top = `${posY}px`
     user.id = id;
+    user.name = name
     contactZone.appendChild(user)
 }
 
@@ -58,7 +59,7 @@ async function drawUsers(){
     for (let i = 0; i < users.length; i++) {
         if (temp.username !== users[i]["username"]) {
             allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
-            createUser(users[i]["pos_x"], users[i]["pos_y"], users[i]["id"]);
+            createUser(users[i]["pos_x"], users[i]["pos_y"], users[i]["id"], users[i]["username"]);
         }
 
     }
