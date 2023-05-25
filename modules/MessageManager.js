@@ -22,11 +22,11 @@ class Manager {
                 console.log(response)
                 if(response.ok) {
                     return response.json();
-                }else {
+                }
+                else {
                     reject(response.status);
                 }
-            })
-            .then(json => {   
+            }).then(json => {   
                 resolve(json);
             })
 

@@ -23,8 +23,8 @@ function printDiscution(contact, currentUser) {
         const receiverName = contact.name;
         
         contactName.innerHTML = receiverName
-        
-        listMessages.forEach(message => {
+
+        for(let message in listMessages.data){
             // console.log(message)
             if(message.sender.toLowerCase() === userName.toLowerCase() && message.receiver.toLowerCase() === receiverName.toLowerCase()){
                 messageField.innerHTML += `<li class="me">${message.message}</li>`
@@ -32,7 +32,10 @@ function printDiscution(contact, currentUser) {
             else if(message.sender.toLowerCase() === receiverName.toLowerCase() && message.receiver.toLowerCase() === userName.toLowerCase()) {
                 messageField.innerHTML += `<li class="contact">${message.message}</li>`
             }
-            })
+
+        }
+        // listMessages.forEach(message => {
+        //     })
     })
     .catch(err => console.log(err))
     
