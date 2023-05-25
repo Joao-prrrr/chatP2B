@@ -4,7 +4,7 @@
 import User from "../modules/User.js"
 
 
-import { printDiscution, writingMessages } from "./ConversationScript.js";
+import { printDiscution, quitMessages, writingMessages } from "./ConversationScript.js";
 
 
 
@@ -17,7 +17,7 @@ const url = window.location.href;
 const allUsers = [];
 let currentUser = null;
 let canMove = true;
-
+let currentContact;
 let contacts;
 let discutionTimeOut;
 
@@ -181,7 +181,7 @@ function checkOverlap() {
             userIcon.style.left = "0px";
             userIcon.style.top = "0px";
             canMove = false;
-
+            currentContact = x;
             discutionTimeOut = setInterval(() => {
                 printDiscution(x, currentUser)
             }, 500);
@@ -219,7 +219,8 @@ leaveButton.addEventListener("click", (e) => {
     userIcon.style.left = "500px";
     userIcon.style.top = "500px";
     canMove = true;
-    clearTimeout(discutionTimeOut);
+    clearInterval(discutionTimeOut);
+    quitMessages(currentContact, currentUser);
     history.pushState({}, null, url);
 })
 
