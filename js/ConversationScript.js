@@ -37,21 +37,25 @@ function printDiscution(contact, currentUser) {
 
         }
         
-        // Writing messages
-
-        const form = document.querySelector("#inputZone");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const data = new FormData(form)
-
-            let message = data.get("message")
-            let result = Manager.sendMessage(contact, token, message);
-            console.log(result)
-        })
+        
     })
     .catch(err => console.log(err))
     
 }
 
-export {printDiscution}
+function writingMessages(contact, currentUser) {
+    // Writing messages
+
+    const form = document.querySelector("#inputZone");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const data = new FormData(form)
+
+        let message = data.get("message")
+        let result = Manager.sendMessage(contact, currentUser.token, message);
+        console.log(result)
+    })
+}
+
+export {printDiscution, writingMessages}
