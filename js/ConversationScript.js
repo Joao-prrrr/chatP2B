@@ -20,7 +20,7 @@ function printDiscution(contact, currentUser) {
         const messageField = document.querySelector("#messageField")
         
         const userName = currentUser.username;
-        const receiverName = contact.username;
+        const receiverName = contact.name;
         
         contactName.innerHTML = receiverName
         
