@@ -175,12 +175,11 @@ document.addEventListener("keydown", (e) => {
 function checkOverlap() {
 
     contacts.forEach(function (x) {
-
+        console.log("salut")
         if (elementsOverlap(userIcon, x) && canMove && canTouch) {
 
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
-            document.querySelector("#openLogin").style.display = "none";
 
 
             canMove = false;
@@ -191,8 +190,13 @@ function checkOverlap() {
             discutionTimeOut = setInterval(() => {
                 printDiscution(x, currentUser)
             }, 500);
+<<<<<<< HEAD
+            writingMessages(currentContact, currentUser);
+            // history.pushState({}, null, `${url}/Joao`);
+=======
             writingMessages(x, currentUser);
             
+>>>>>>> a62fc031cbdd0a56ce220b346efba87ffb59a8a9
         }
         
 
@@ -222,8 +226,6 @@ async function sendPosition() {
 leaveButton.addEventListener("click", (e) => {
     messageZone.style.display = "none";
     contactZone.style.display = "flex";
-    document.querySelector("#openLogin").style.display = "block";
-
     canMove = true;
 
     clearTimeout(discutionTimeOut);
@@ -232,7 +234,7 @@ leaveButton.addEventListener("click", (e) => {
     }, 2000)
 
     clearInterval(discutionTimeOut);
-    quitMessages();
+    quitMessages(currentContact, currentUser);
 
     history.pushState({}, null, url);
 })
