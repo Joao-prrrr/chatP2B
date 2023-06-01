@@ -175,11 +175,12 @@ document.addEventListener("keydown", (e) => {
 function checkOverlap() {
 
     contacts.forEach(function (x) {
-        console.log("salut")
+
         if (elementsOverlap(userIcon, x) && canMove && canTouch) {
 
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
+            document.querySelector("#openLogin").style.display = "none";
 
 
             canMove = false;
@@ -221,6 +222,8 @@ async function sendPosition() {
 leaveButton.addEventListener("click", (e) => {
     messageZone.style.display = "none";
     contactZone.style.display = "flex";
+    document.querySelector("#openLogin").style.display = "block";
+
     canMove = true;
 
     clearTimeout(discutionTimeOut);
