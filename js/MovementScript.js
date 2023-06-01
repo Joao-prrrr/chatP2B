@@ -4,7 +4,7 @@
 import User from "../modules/User.js"
 
 
-import { printDiscution, writingMessages } from "./ConversationScript.js";
+import { printDiscution, quitMessages, writingMessages } from "./ConversationScript.js";
 
 
 
@@ -17,7 +17,7 @@ const url = window.location.href;
 const allUsers = [];
 let currentUser = null;
 let canMove = true;
-
+let currentContact;
 let contacts;
 let discutionTimeOut;
 let canTouch = true;
@@ -181,9 +181,15 @@ function checkOverlap() {
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
 
+
             canMove = false;
             canTouch = false;
-            
+
+            userIcon.style.left = "0px";
+            userIcon.style.top = "0px";
+            canMove = false;
+            currentContact = x;
+
             discutionTimeOut = setInterval(() => {
                 printDiscution(x, currentUser)
             }, 500);
@@ -219,10 +225,15 @@ leaveButton.addEventListener("click", (e) => {
     messageZone.style.display = "none";
     contactZone.style.display = "flex";
     canMove = true;
+
     clearTimeout(discutionTimeOut);
     setTimeout(() =>{
         canTouch = true;
     }, 2000)
+
+    clearInterval(discutionTimeOut);
+    quitMessages(currentContact, currentUser);
+
     history.pushState({}, null, url);
 })
 

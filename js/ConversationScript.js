@@ -7,6 +7,7 @@ import {Manager} from "../modules/messageManager.js";
 import {Message} from "../modules/Message.js";
 
 // Show conversations
+const form = document.querySelector("#inputZone");
 
 
 function printDiscution(contact, currentUser) {
@@ -45,17 +46,21 @@ function printDiscution(contact, currentUser) {
 
 function writingMessages(contact, currentUser) {
     // Writing messages
-
-    const form = document.querySelector("#inputZone");
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const data = new FormData(form)
-
-        let message = data.get("message")
-        let result = Manager.sendMessage(contact, currentUser.token, message);
-        console.log(result)
-    })
+    form.addEventListener("submit", (e) => enableMesssages(e, contact, currentUser))
 }
 
-export {printDiscution, writingMessages}
+function quitMessages(contact, currentUser) {
+    form.removeEventListener("submit", e => enableMesssages(e, contact, currentUser));
+}
+
+function enableMesssages(e, contact, currentUser) {
+    e.preventDefault();
+
+    const data = new FormData(form)
+
+    let message = data.get("message")
+    let result = Manager.sendMessage(contact, currentUser.token, message);
+    console.log(result)
+}
+
+export {printDiscution, writingMessages, quitMessages}
