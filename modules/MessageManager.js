@@ -26,7 +26,7 @@ class Manager {
             const promise = fetch(`https://edu.pellaux.net/m294/chat-p2b/messages.php?contact=${contactId}`, this.optionsGet)
 
             promise.then(response => {
-                console.log(response)
+                //console.log(response)
                 if(response.ok) {
                     return response.json();
                 }
