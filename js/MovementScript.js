@@ -185,8 +185,7 @@ function checkOverlap() {
             canMove = false;
             canTouch = false;
 
-            userIcon.style.left = "0px";
-            userIcon.style.top = "0px";
+
             canMove = false;
             currentContact = x;
 
