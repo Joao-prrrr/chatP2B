@@ -229,7 +229,7 @@ leaveButton.addEventListener("click", (e) => {
     }, 2000)
 
     clearInterval(discutionTimeOut);
-    quitMessages(currentContact, currentUser);
+    quitMessages();
 
     history.pushState({}, null, url);
 })

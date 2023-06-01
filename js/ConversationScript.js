@@ -53,7 +53,7 @@ function writingMessages(contact, currentUser) {
 
 }
 
-function quitMessages(contact, currentUser) {
+function quitMessages() {
     sendBtn.removeEventListener("click", funEvent);
 }
 
