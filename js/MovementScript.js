@@ -185,8 +185,6 @@ function checkOverlap() {
             canMove = false;
             canTouch = false;
 
-
-            canMove = false;
             currentContact = x;
 
             discutionTimeOut = setInterval(() => {
