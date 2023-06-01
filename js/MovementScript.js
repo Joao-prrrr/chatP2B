@@ -185,7 +185,7 @@ function checkOverlap() {
             discutionTimeOut = setInterval(() => {
                 printDiscution(x, currentUser)
             }, 500);
-            writingMessages(x, currentUser);
+            writingMessages(currentContact, currentUser);
             // history.pushState({}, null, `${url}/Joao`);
         }
         

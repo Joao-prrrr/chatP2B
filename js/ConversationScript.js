@@ -7,8 +7,10 @@ import {Manager} from "../modules/messageManager.js";
 import {Message} from "../modules/Message.js";
 
 // Show conversations
-const form = document.querySelector("#inputZone");
+const sendBtn = document.querySelector("#sendBtn");
+const form = document.querySelector("#inputZone")
 
+form.addEventListener("submit", (e) => e.preventDefault())
 
 function printDiscution(contact, currentUser) {
 
@@ -43,19 +45,19 @@ function printDiscution(contact, currentUser) {
     .catch(err => console.log(err))
     
 }
-
+let funEvent = null;
 function writingMessages(contact, currentUser) {
     // Writing messages
-    form.addEventListener("submit", (e) => enableMesssages(e, contact, currentUser))
+    funEvent = () => {enableMesssages(contact, currentUser)}
+    sendBtn.addEventListener("click", funEvent)
+
 }
 
 function quitMessages(contact, currentUser) {
-    form.removeEventListener("submit", e => enableMesssages(e, contact, currentUser));
+    sendBtn.removeEventListener("click", funEvent);
 }
 
-function enableMesssages(e, contact, currentUser) {
-    e.preventDefault();
-
+function enableMesssages(contact, currentUser) {
     const data = new FormData(form)
 
     let message = data.get("message")
