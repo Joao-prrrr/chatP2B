@@ -20,6 +20,7 @@ let canMove = true;
 
 let contacts;
 let discutionTimeOut;
+let canTouch = true;
 
 
 
@@ -174,19 +175,20 @@ document.addEventListener("keydown", (e) => {
 function checkOverlap() {
 
     contacts.forEach(function (x) {
-        if (elementsOverlap(userIcon, x) && canMove) {
-            
+        console.log("salut")
+        if (elementsOverlap(userIcon, x) && canMove && canTouch) {
+
             messageZone.style.display = "flex";
             contactZone.style.display = "none";
-            userIcon.style.left = "0px";
-            userIcon.style.top = "0px";
-            canMove = false;
 
+            canMove = false;
+            canTouch = false;
+            
             discutionTimeOut = setInterval(() => {
                 printDiscution(x, currentUser)
             }, 500);
             writingMessages(x, currentUser);
-            // history.pushState({}, null, `${url}/Joao`);
+            
         }
         
 
@@ -216,16 +218,17 @@ async function sendPosition() {
 leaveButton.addEventListener("click", (e) => {
     messageZone.style.display = "none";
     contactZone.style.display = "flex";
-    userIcon.style.left = "500px";
-    userIcon.style.top = "500px";
     canMove = true;
     clearTimeout(discutionTimeOut);
+    setTimeout(() =>{
+        canTouch = true;
+    }, 2000)
     history.pushState({}, null, url);
 })
 
 setInterval(() => {
     drawUsers();
-}, 200);
+}, 600);
 
 init();
 
