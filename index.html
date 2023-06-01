@@ -13,6 +13,8 @@
      <link rel="stylesheet" href="css/MovementZone.css">
      <link rel="stylesheet" href="css/contactPopUp.css">
      <script src="js/ConversationScript.js" type="module"></script>
+     <script src="js/Login.js" type="module"></script>
+
  
      <title>Chat P2B</title>
  </head>
@@ -20,10 +22,26 @@
  
      
      <main>
+         <!-- Zone Login -->
+
+         <div id="sectionLogin">
+            <form action="" method="post">
+                <fieldset>
+                    <label class="loginElement" for="username">Login</label>
+                    <input class="loginElement" type="text" name="username" id="username">
+                    <label class="loginElement" for="password">Password</label>
+                    <input class="loginElement" type="password" name="password" id="password">
+                    <button id="sendLogin">login</button>
+                </fieldset>
+            </form>
+         </div>
+
+
          <!-- Zone Liste de contacts -->
          <div id="ZoneContact">
              <img id="User" src="img/bingabongbi.png" alt="">
          </div>
+         <p id="openLogin">login</p>
          <!-- Zone Message -->
          <section id="messageZone">
              <button id="leave">X</button>
@@ -36,6 +54,7 @@
              </form>
          </section>
      </main>
+
      <script type="module" src="js/MovementScript.js"></script>
  </body>
  </html>
