@@ -29,14 +29,25 @@ let canTouch = true;
 
 
 function createUser(posX, posY, id, name) {
-    let user = document.createElement("img")
-    user.className = "Contacts"
+    const encapsulatingDiv = document.createElement("div")
+    encapsulatingDiv.className = "Contacts"
+    encapsulatingDiv.style.left = `${posX}px`
+    encapsulatingDiv.style.top = `${posY}px`
+    encapsulatingDiv.id = id;
+    encapsulatingDiv.name = name
+    const nameTag = document.createElement("p")
+    nameTag.textContent = name
+    nameTag.style.marginTop = "55px"
+    const user = document.createElement("img")
+
     user.src = "img/aonfsioa.png"
-    user.style.left = `${posX}px`
-    user.style.top = `${posY}px`
-    user.id = id;
-    user.name = name
-    contactZone.appendChild(user)
+
+
+
+    encapsulatingDiv.appendChild(user)
+    encapsulatingDiv.appendChild(nameTag)
+
+    contactZone.appendChild(encapsulatingDiv)
 }
 
 
@@ -57,7 +68,7 @@ async function drawUsers(){
     contacts.forEach(function(e){
         e.remove();
     })
-
+    
     for (let i = 0; i < users.length; i++) {
         if (temp.username !== users[i]["username"]) {
             allUsers.push(new User(users[i]["id"], users[i]["username"], users[i]["pos_x"], users[i]["pos_y"]))
@@ -165,7 +176,7 @@ function elementsOverlap(el1, el2) {
 document.addEventListener("keydown", (e) => {
     if (canMove) {
         getKeyAndMove(e)
-        checkOverlap();
+       
     }
 
 })
@@ -232,13 +243,14 @@ leaveButton.addEventListener("click", (e) => {
     }, 2000)
 
     clearInterval(discutionTimeOut);
-    quitMessages();
+    quitMessages(currentContact, currentUser);
 
     history.pushState({}, null, url);
 })
 
 setInterval(() => {
     drawUsers();
+    checkOverlap();
 }, 600);
 
 init();
