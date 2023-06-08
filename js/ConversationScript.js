@@ -12,6 +12,11 @@ const form = document.querySelector("#inputZone")
 
 form.addEventListener("submit", (e) => e.preventDefault())
 
+const inputTag = document.querySelector("#message")
+inputTag.addEventListener("focus", () => {
+    inputTag.value = "";
+})
+
 function printDiscution(contact, currentUser) {
 
     let token = currentUser.token;
@@ -62,7 +67,7 @@ function enableMesssages(contact, currentUser) {
 
     let message = data.get("message")
     let result = Manager.sendMessage(contact, currentUser.token, message);
-    console.log(result)
+    inputTag.value = ""
 }
 
 export {printDiscution, writingMessages, quitMessages}
